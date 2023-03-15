@@ -69,26 +69,6 @@ resource "aws_lambda_function" "api_lambda" {
   }
 }
 
-resource "aws_iam_role" "lambda_role" {
-  name = "lambda_role"
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Action = "sts:AssumeRole"
-        Effect = "Allow"
-        Principal = {
-          Service = "lambda.amazonaws.com"
-        }
-      }
-    ]
-  })
-}
-
-resource "aws_iam_role_policy_attachment" "lambda_policy_attachment" {
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-  role = data.aws_iam_role.lambda
-}
 
 resource "aws_security_group" "lambda_sg" {
   name_prefix = "lambda_sg"
@@ -132,24 +112,5 @@ locals {
   })
 }
 
-resource "aws_cloudwatch_event_rule" "api_lambda_rule" {
-  name                = "api_lambda_rule"
-  description         = "Trigger the Lambda function to make API request"
-  schedule_expression = "rate(1 hour)"
-}
-
-resource "aws_cloudwatch_event_target" "api_lambda_target" {
-  rule      = aws_cloudwatch_event_rule.api_lambda_rule.name
-  arn       = aws_lambda_function.api_lambda.arn
-  target_id = "api_lambda_target"
-  input = jsonencode({
-    url = "https://2xfhzfbt31.execute-api.eu-west-1.amazonaws.com/candidate-email_serverless_lambda_stage/data",
-    headers = {
-      "X-Siemens-Auth" = "test",
-      "Content-Type" = "application/json"
-    },
-    data = local.api_payload
-  })
-}
 
 

@@ -23,12 +23,12 @@ pipeline{
         }
         stage("TF Apply"){
             steps{
-                echo "Executing Terraform Apply"
+                echo "terraform apply --auto-approve"
             }
         }
         stage("Invoke Lambda"){
             steps{
-                sh "terraform apply --auto-approve"
+                sh "aws lambda invoke --function-name api-lambda-function --payload 'api-payload' output.txt"
             }
         }
     }

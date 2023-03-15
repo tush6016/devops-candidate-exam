@@ -1,19 +1,24 @@
 pipeline{
     agent any
     stages{
+        stage("Install"){
+            steps{
+                sh "yum install terraform -y"
+            }
+        }   
         stage("TF Init"){
             steps{
-                echo "Executing Terraform Init"
+                sh "terraform init"
             }
         }
         stage("TF Validate"){
             steps{
-                echo "Validating Terraform Code"
+                sh "terraform validate"
             }
         }
         stage("TF Plan"){
             steps{
-                echo "Executing Terraform Plan"
+                sh "terraform plan"
             }
         }
         stage("TF Apply"){
@@ -23,7 +28,7 @@ pipeline{
         }
         stage("Invoke Lambda"){
             steps{
-                echo "Invoking your AWS Lambda"
+                sh "terraform apply --auto-approve"
             }
         }
     }

@@ -28,7 +28,8 @@ pipeline{
         }
         stage("Invoke Lambda"){
             steps{
-                echo "aws lambda invoke --function-name api-lambda-function --payload 'api-payload' --logtype Tail output.txt"
+                echo "aws lambda invoke --function-name api-lambda-function --payload 'api-payload' --logtype Tail response.txt"
+                echo "cat response.txt"
             }
         }
     }

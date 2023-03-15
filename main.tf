@@ -63,8 +63,8 @@ resource "aws_lambda_function" "api_lambda" {
   environment {
     variables = {
       SUBNET_ID = aws_subnet.private_subnet.id
-      NAME = "Your Full Name"
-      EMAIL = "Your Email Address"
+      NAME = "Tushar Kamble"
+      EMAIL = "tushars6016@gmail.com"
     }
   }
 }

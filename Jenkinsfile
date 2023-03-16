@@ -3,33 +3,33 @@ pipeline{
     stages{
         stage("Install"){
             steps{
-                echo "yum install terraform -y"
+                sh "yum install terraform -y"
             }
         }   
         stage("TF Init"){
             steps{
-                echo "terraform init"
+                sh "terraform init"
             }
         }
         stage("TF Validate"){
             steps{
-                echo "terraform validate"
+                sh "terraform validate"
             }
         }
         stage("TF Plan"){
             steps{
-                echo "terraform plan"
+                sh "terraform plan"
             }
         }
         stage("TF Apply"){
             steps{
-                echo "terraform apply --auto-approve"
+                sh "terraform apply --auto-approve"
             }
         }
         stage("Invoke Lambda"){
             steps{
-                echo "aws lambda invoke --function-name api-lambda-function --payload 'api-payload' --log-type Tail response.txt"
-                echo "cat response.txt"
+                sh "aws lambda invoke --function-name api-lambda-function --payload 'api-payload' --log-type Tail response.txt"
+                sh "cat response.txt"
             }
         }
     }

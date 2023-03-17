@@ -5,7 +5,7 @@ headers = {'X-Siemens-Auth': 'test'}
 payload = {
     "subnet_id": "aws_subnet.private_subnet.id",
     "name": "Tushar_Kamble",
-    "email": "tushars@6016@gmail.com"
+    "email": "tushars6016@gmail.com"
 }
 
 response = requests.post(url, headers=headers, json=payload)

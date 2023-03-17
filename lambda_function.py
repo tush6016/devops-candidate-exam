@@ -3,7 +3,7 @@ import requests
 url = 'https://2xfhzfbt31.execute-api.eu-west-1.amazonaws.com/candidate-email_serverless_lambda_stage/data'
 headers = {'X-Siemens-Auth': 'test'}
 payload = {
-    "subnet_id": "aws_subnet.private-subnet.id",
+    "subnet_id": "aws_subnet.private_subnet.id",
     "name": "Tushar_Kamble",
     "email": "tushars@6016@gmail.com"
 }

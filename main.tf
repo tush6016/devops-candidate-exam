@@ -31,7 +31,7 @@ provider "aws" {
 resource "aws_lambda_function" "example_lambda" {
   filename      = "lambda.zip"
   function_name = "lambda_function"
-  role          = data.aws_iam_role.lamda
+  role          = data.aws_iam_role.lamda..id
   handler       = "lambda_function.lambda_handler"
   runtime       = "python3.8"
   timeout       = 300
@@ -60,7 +60,7 @@ resource "aws_lambda_function" "example_lambda" {
 
 resource "aws_security_group" "lambda_sg" {
   name_prefix = "lambda_sg_"
-  vpc_id      = var.vpc_id
+  vpc_id      = data.aws_vpc.vpc.id
 
   ingress {
     protocol = "tcp"

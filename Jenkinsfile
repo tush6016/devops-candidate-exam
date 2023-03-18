@@ -11,7 +11,7 @@ pipeline{
                 sh 'echo "yum install terraform -y"'
             }
         }
-        stage{
+        stage("try"){
             steps{
                 sh 'echo "cd"'
             }

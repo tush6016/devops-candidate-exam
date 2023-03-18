@@ -1,6 +1,12 @@
 pipeline{
     agent any
     stages{
+        stages{
+        stage("Clone"){
+            steps{
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/tush6016/devops-candidate-exam.git']]])
+            }
+        }        
         stage("Install"){
             steps{
                 echo "yum install terraform -y"

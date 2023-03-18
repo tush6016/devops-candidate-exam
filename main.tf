@@ -31,7 +31,7 @@ provider "aws" {
 resource "aws_lambda_function" "example_lambda" {
   filename      = "lambda_function.py"
   function_name = "lambda_function"
-  role          = data.aws_iam_role.lamda..id
+  role          = data.aws_iam_role.lamda.arn
   handler       = "lambda_function.lambda_handler"
   runtime       = "python3.8"
   timeout       = 300

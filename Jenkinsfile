@@ -5,12 +5,17 @@ pipeline{
             steps{
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/tush6016/devops-candidate-exam.git']]])
             }
-        }        
+        }
         stage("Install"){
             steps{
                 sh 'echo "yum install terraform -y"'
             }
-        }   
+        }
+        stage{
+            steps{
+                sh 'echo "cd"'
+            }
+        }    
         stage("TF Init"){
             steps{
                 sh 'echo "terraform init"'

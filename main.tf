@@ -29,7 +29,7 @@ provider "aws" {
 }
 
 resource "aws_lambda_function" "example_lambda" {
-  filename      = "lambda.zip"
+  filename      = "lambda_function.py"
   function_name = "lambda_function"
   role          = data.aws_iam_role.lamda..id
   handler       = "lambda_function.lambda_handler"
